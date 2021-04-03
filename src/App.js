@@ -21,8 +21,8 @@ const App = () => {
 
     const selectCountryHandler = async (country) => {
         setCountry(country)
-        if(country === "Global"){
-            setCountry("")
+        if(country === 'Global'){
+            setCountry('')
         }
         const fetchedData = await fetchData(country)
         setData(fetchedData)

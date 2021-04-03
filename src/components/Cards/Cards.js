@@ -4,15 +4,11 @@ import {Card, CardContent, Typography} from "@material-ui/core";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import CountUp from "react-countup";
 import styles from "./cards.module.css"
-import Paper from "@material-ui/core/Paper";
 import clsx from "clsx";
 
 const useStyles = makeStyles(() => ({
     root: {
-        // display: 'flex',
-        // alignItems: 'center',
-        // justifyContent: 'center',
-        // flexDirection: "column"
+
     },
 }));
 

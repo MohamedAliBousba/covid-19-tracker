@@ -1,26 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import FormControl from "@material-ui/core/FormControl";
-import NativeSelect from "@material-ui/core/NativeSelect";
 
 import styles from "./country.module.css"
 
 import {fetchCountries} from "../../api";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import Select from "@material-ui/core/Select";
-
-const useStyles = makeStyles((theme) => ({
-    select: {
-        "& option": {
-            background: theme.palette.background.paper
-        },
-        width: "150px"
-    }
-}));
+import MenuItem from "@material-ui/core/MenuItem";
 
 const CountryPicker = ({selectCountryHandler}) => {
-    const classes = useStyles();
 
     const [fetchedCountries, setFetchedCountries] = useState([])
+
+    const [selection, setSelection] = useState('Global')
 
     useEffect(() => {
         fetchCountries()
@@ -31,10 +22,18 @@ const CountryPicker = ({selectCountryHandler}) => {
 
     return (
         <FormControl className={styles.formControl}>
-            <Select native className={classes.select} defaultValue="Global" onChange={e => selectCountryHandler(e.target.value)}>
-                <option value="Global">Global</option>
+            <Select
+                labelId="demo-controlled-open-select-label"
+                id="demo-controlled-open-select"
+                value={selection}
+                onChange={e => {
+                    selectCountryHandler(e.target.value)
+                    setSelection(e.target.value)
+                }}
+            >
+                <MenuItem value="Global">Global</MenuItem>
                 {fetchedCountries.map(country => (
-                    <option key={country} value={country}>{country}</option>
+                    <MenuItem key={country} value={country}>{country}</MenuItem>
                 ))}
             </Select>
         </FormControl>
